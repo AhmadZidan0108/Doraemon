@@ -1,0 +1,32 @@
+@tailwind base;  /* Mengimpor dasar gaya dari TailwindCSS */
+@tailwind components;  /* Mengimpor komponen standar dari TailwindCSS */
+@tailwind utilities;  /* Mengimpor utilitas standar dari TailwindCSS */
+
+/* Bagian untuk mendefinisikan komponen kustom */
+@layer components {
+  .navlink {
+    /* Gaya untuk link navigasi */
+    @apply text-xl inline-block px-6 py-2 font-semibold text-gray-500 hover:text-black; 
+    /* text-xl: ukuran font besar, inline-block: membuat elemen inline dengan properti block, 
+       px-6 py-2: padding horizontal dan vertikal, font-semibold: ketebalan font,
+       text-gray-500: warna teks abu-abu, hover:text-black: warna teks berubah menjadi hitam saat hover */
+  }
+
+  .primary-btn {
+    /* Gaya untuk tombol dengan latar belakang gradien */
+    @apply bg-gradient-to-r from-primary/80 to-primary hover:bg-gradient-to-t duration-200 text-white font-semibold px-6 py-2 rounded-full;
+    /* bg-gradient-to-r: membuat gradien dari kiri ke kanan, from-primary/80: warna pertama gradien dengan transparansi 80%, 
+       to-primary: warna kedua gradien, hover:bg-gradient-to-t: gradien berubah arah saat hover, 
+       duration-200: animasi transisi selama 200ms, text-white: warna teks putih, font-semibold: ketebalan font,
+       px-6 py-2: padding, rounded-full: tombol berbentuk bundar */
+  }
+}
+
+/* Bagian untuk mendefinisikan utilitas kustom */
+@layer utilities {
+  .center {
+    /* Gaya untuk menata elemen agar berada di tengah */
+    @apply flex items-center justify-center;
+    /* flex: menggunakan flexbox, items-center: menata elemen secara vertikal di tengah, justify-center: menata elemen secara horizontal di tengah */
+  }
+}
