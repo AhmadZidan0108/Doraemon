@@ -1,0 +1,158 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7; /* Soft off-white background */
+}
+
+.dashboard {
+    padding: 30px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Statistik Section */
+.statistics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: #81c784; /* Same light green */
+    padding: 20px;
+    border-radius: 8px;
+    width: 22%;
+    text-align: center;
+}
+
+.stat-card .icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.stat-card h2 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.stat-card .stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Menu Section */
+.menu {
+    margin-top: 30px;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.menu-header h2 {
+    margin: 0;
+    font-size: 26px;
+    color: #333;
+    font-weight: 600;
+}
+
+.add-menu-btn {
+    padding: 12px 25px;
+    background-color: #81c784; /* Same light green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.add-menu-btn:hover {
+    background-color: #66bb6a; /* Darker green for hover */
+}
+
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.menu-table th, .menu-table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.menu-table th {
+    background-color: #81c784; /* Same light green for table header */
+    color: white;
+    font-size: 18px;
+}
+
+.menu-table td {
+    background-color: #f1f1f1; /* Light grey */
+    font-size: 16px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 8px 15px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.edit-btn {
+    background-color: #81c784; /* Same light green for edit button */
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f44336; /* Red for delete button */
+    color: white;
+}
+
+/* Reviews Section */
+.reviews {
+    margin-top: 40px;
+}
+
+.reviews h2 {
+    font-size: 24px; /* Reduced size for title */
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.review-card {
+    background-color: #81c784; /* Light green background for the review card */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-card p {
+    font-style: italic;
+    font-size: 16px;
+    color: #333; /* Keep the text color dark */
+}
+
+.review-card .author {
+    font-weight: bold;
+    color: #333;
+    text-align: right;
+    font-size: 14px;
+}
