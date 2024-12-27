@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from React Router
 import '../Dasboard/Dasboard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 const Dashboard = () => {
   const [menuItems, setMenuItems] = useState([
@@ -14,15 +17,30 @@ const Dashboard = () => {
     { id: 8, name: 'Cold Brew', price: 'Rp 100,000', description: 'Cold Brew diseduh dingin untuk menghasilkan rasa kopi yang halus dan menyegarkan.' }
   ]);
 
-  const handleDelete = (id) => {
-    setMenuItems(menuItems.filter(item => item.id !== id));
-  };
+  const [reviews, setReviews] = useState([
+    { id: 1, reviewer: '-Ali', review: 'Kopi yang luar biasa! Rasanya sangat nikmat dan segar.' },
+    { id: 2, reviewer: '-Dina', review: 'Saya sangat suka Cappuccino, creamy dan lezat.' },
+    { id: 3, reviewer: '-Nana', review: 'Espresso-nya benar-benar kuat dan memberikan energi ekstra!' }
+  ]);
 
-  const handleEdit = (id) => {
-    const updatedMenu = menuItems.map(item => 
-      item.id === id ? { ...item, name: item.name + ' (Updated)' } : item
-    );
-    setMenuItems(updatedMenu);
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Apakah Anda yakin?',
+      text: 'Anda tidak akan dapat mengembalikan menu ini!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Batal',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setMenuItems(menuItems.filter(item => item.id !== id));
+        Swal.fire(
+          'Dihapus!',
+          'Menu telah dihapus.',
+          'success'
+        );
+      }
+    });
   };
 
   return (
@@ -57,7 +75,9 @@ const Dashboard = () => {
           </div>
           <div className="add-menu-container">
             <Link to="/TambahMenu">
-              <button className="add-menu-btn">Tambah Menu</button>
+              <button className="add-menu-btn">
+                <FontAwesomeIcon icon={faPlus} />
+              </button>
             </Link>
           </div>
           <table className="menu-table">
@@ -76,8 +96,15 @@ const Dashboard = () => {
                   <td>{item.price}</td>
                   <td>{item.description}</td>
                   <td>
-                    <button onClick={() => handleEdit(item.id)} className="edit-btn">Edit</button>
-                    <button onClick={() => handleDelete(item.id)} className="delete-btn">Delete</button>
+                    {/* Edit button now links to EditMinuman page */}
+                    <Link to={`/EditMinuman/`}>
+                      <button className="edit-btn">
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                    </Link>
+                    <button onClick={() => handleDelete(item.id)} className="delete-btn">
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -85,19 +112,18 @@ const Dashboard = () => {
           </table>
         </section>
 
+        {/* New Section for Customer Reviews */}
         <section className="reviews">
-          <h2>ULASAN PELANGGAN</h2>
-          <div className="review-card">
-            <p><i>"Tempat yang sangat nyaman, coffeenya enak!"</i></p>
-            <div className="author">Ali</div>
+          <div className="reviews-header">
+            <h2 className="reviews-title">ULASAN PEMBELI</h2>
           </div>
-          <div className="review-card">
-            <p><i>"Pelayanan cepat dan ramah. Akan datang lagi!"</i></p>
-            <div className="author">Siti</div>
-          </div>
-          <div className="review-card">
-            <p><i>"Coffeenya enak banget, suasananya juga cozy!"</i></p>
-            <div className="author">Rina</div>
+          <div className="reviews-list">
+            {reviews.map(review => (
+              <div key={review.id} className="review-card">
+                <h3>{review.reviewer}</h3>
+                <p>{review.review}</p>
+              </div>
+            ))}
           </div>
         </section>
       </main>

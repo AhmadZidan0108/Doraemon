@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './TambahMenu.css'; // Make sure this CSS file is included
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 const TambahMenu = () => {
   const [name, setName] = useState('');
@@ -10,6 +11,19 @@ const TambahMenu = () => {
     e.preventDefault();
     // Handle form submission logic (e.g., sending data to an API or updating state)
     console.log('Menu added:', { name, price, description });
+
+    // Show SweetAlert2 confirmation
+    Swal.fire({
+      title: 'Menu Baru Ditambahkan!',
+      text: `${name} telah berhasil ditambahkan ke menu.`,
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+
+    // Reset form fields after successful submission
+    setName('');
+    setPrice('');
+    setDescription('');
   };
 
   return (
@@ -17,7 +31,7 @@ const TambahMenu = () => {
       <h2 className="title">Tambah Menu Baru</h2>
       <form className="menu-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="form-label">Nama Menu</label>
+          <label className="form-label">Nama Coffe</label>
           <input
             type="text"
             className="form-input"
