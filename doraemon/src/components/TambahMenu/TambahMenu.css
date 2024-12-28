@@ -40,7 +40,7 @@
 .form-input,
 .form-textarea {
     width: 100%;
-    padding: 8px 12px;  /* Padding sedikit lebih besar */
+    padding: 0.75rem 1rem;  /* Padding sedikit lebih besar */
     font-size: 13px;  /* Ukuran font input sedikit lebih besar */
     border: 2px solid #ddd;
     border-radius: 6px;
@@ -61,21 +61,112 @@
 }
 
 .submit-button {
-    padding: 10px 16px;  /* Menambah padding tombol sedikit lebih besar */
-    font-size: 13px;  /* Ukuran font tombol sedikit lebih besar */
-    background-color: #28a745;  /* Warna tombol hijau */
+    padding: 10px 16px;
+    font-size: 14px;
+    background-color: #28a745; /* Hijau untuk tombol simpan */
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    align-self: center;
+    display: flex; /* Flex untuk menempatkan ikon di tengah */
+    align-items: center; /* Menyeimbangkan vertikal */
+    justify-content: center; /* Menyeimbangkan horizontal */
+    margin-left: auto; /* Posisi tombol simpan di kanan */
 }
 
 .submit-button:hover {
-    background-color: #218838;
+    background-color: #218838; /* Warna lebih gelap saat hover */
 }
 
 .submit-button:active {
-    background-color: #1e7e34;
+    background-color: #1e7e34; /* Warna lebih gelap saat ditekan */
+}
+
+/* Media query untuk perangkat dengan lebar layar maksimum 768px (tablet) */
+@media (max-width: 768px) {
+    .tambah-menu-container {
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        font-size: 0.9rem;
+    }
+
+    .submit-button {
+        font-size: 0.9rem;
+    }
+}
+
+/* Responsif untuk layar ponsel */
+@media (max-width: 480px) {
+    .tambah-menu-container {
+        max-width: 100%; /* Memanfaatkan seluruh layar */
+        padding: 0.8rem;
+    }
+
+    .title {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .submit-button {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
+.submit-left {
+    padding: 10px 16px;
+    font-size: 14px;
+    background-color: #dc3545; /* Merah untuk tombol kembali */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex; /* Flex untuk menempatkan ikon di tengah */
+    align-items: center; /* Menyeimbangkan vertikal */
+    justify-content: center; /* Menyeimbangkan horizontal */
+    margin-right: auto; /* Posisi tombol kembali di kiri */
+}
+
+.submit-left:hover {
+    background-color: #c82333; /* Warna lebih gelap saat hover */
+}
+
+.submit-left:active {
+    background-color: #bd2130; /* Warna lebih gelap saat ditekan */
+}
+
+/* Tata letak tombol */
+.menu-form {
+    display: flex;
+    flex-direction: column; /* Awalnya kolom untuk input */
+    gap: 16px; /* Jarak antar elemen */
+}
+
+.button-group {
+    display: flex; /* Flex untuk menata tombol */
+    justify-content: space-between; /* Tombol berada di kiri dan kanan */
+    margin-top: 16px; /* Jarak tombol dari form */
 }

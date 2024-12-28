@@ -1,0 +1,40 @@
+/* Reviews Section */
+.reviews {
+    margin-top: 40px; /* Memberikan jarak atas 40px untuk bagian ulasan */
+}
+
+.reviews h2 {
+    font-size: 24px; /* Menentukan ukuran font untuk judul ulasan */
+    text-align: center; /* Menyusun teks judul di tengah */
+    color: #333; /* Warna teks judul berwarna abu-abu gelap */
+    font-weight: bold; /* Menebalkan teks judul */
+    margin-bottom: 20px; /* Memberikan jarak bawah 20px pada judul ulasan */
+}
+
+.review-card {
+    background-color: #f7f7f7; /* Menentukan warna latar belakang kartu ulasan menjadi abu-abu terang */
+    padding: 20px; /* Menambahkan jarak dalam kartu ulasan sebanyak 20px */
+    margin-bottom: 20px; /* Memberikan jarak bawah antar kartu ulasan sebanyak 20px */
+    border-radius: 8px; /* Membuat sudut kartu menjadi melengkung dengan radius 8px */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Memberikan bayangan halus pada kartu ulasan */
+}
+
+.review-card p {
+    font-style: italic; /* Mengubah teks ulasan menjadi miring */
+    font-size: 16px; /* Menentukan ukuran font untuk teks ulasan */
+    color: #333; /* Menentukan warna teks ulasan menjadi abu-abu gelap */
+}
+
+.review-card .author {
+    font-weight: bold; /* Menebalkan nama penulis ulasan */
+    color: #333; /* Menentukan warna teks nama penulis menjadi abu-abu gelap */
+    text-align: right; /* Menyusun nama penulis di sebelah kanan */
+    font-size: 14px; /* Menentukan ukuran font untuk nama penulis */
+}
+
+/* Media query untuk tampilan pada perangkat dengan lebar maksimum 480px */
+@media (max-width: 480px) {
+    .review-card {
+        padding: 15px; /* Mengurangi jarak dalam kartu ulasan menjadi 15px pada perangkat kecil */
+    }
+}

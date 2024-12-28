@@ -1,64 +1,124 @@
 .edit-container {
-    background-color: #d4f7d4; /* Light green background */
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 50px auto 0; /* Added margin-top for spacing from the top */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 24px;
-    color: #2e7d32; /* Dark green */
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-  
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    box-sizing: border-box;
-  }
-  
-  .input-field:focus {
-    outline: none;
-    border-color: #2e7d32; /* Dark green on focus */
-  }
-  
-  textarea {
-    height: 100px;
-    resize: vertical;
-  }
-  
-  .save-button {
-    background-color: #2e7d32;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-  }
-  
-  .save-button:hover {
-    background-color: #1b5e20; /* Darker green on hover */
-  }
-  
-  .loading {
-    text-align: center;
-    font-size: 18px;
-    color: #2e7d32;
-  }  
+  background-color: #d4f7d4; /* Warna latar hijau muda */
+  padding: 20px; /* Jarak dalam elemen */
+  border-radius: 8px; /* Membuat sudut elemen melengkung */
+  max-width: 500px; /* Lebar maksimum kontainer */
+  margin: 50px auto 0; /* Memberi jarak atas dan memusatkan kontainer secara horizontal */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan halus */
+}
+
+h2 {
+  text-align: center; /* Memusatkan teks */
+  font-size: 24px; /* Ukuran font heading */
+  color: #2e7d32; /* Warna hijau gelap untuk teks */
+}
+
+.input-group {
+  margin-bottom: 15px; /* Jarak bawah antar grup input */
+}
+
+label {
+  display: block; /* Menampilkan label dalam satu baris penuh */
+  font-size: 14px; /* Ukuran font label */
+  margin-bottom: 5px; /* Jarak bawah label dengan elemen input */
+}
+
+.input-field {
+  width: 100%; /* Mengatur lebar input menjadi 100% dari kontainer */
+  padding: 10px; /* Jarak dalam input */
+  border-radius: 4px; /* Sudut melengkung pada input */
+  border: 1px solid #ccc; /* Warna border abu-abu */
+  font-size: 14px; /* Ukuran font input */
+  box-sizing: border-box; /* Memastikan padding termasuk dalam total lebar */
+}
+
+.input-field:focus {
+  outline: none; /* Menghapus outline default pada fokus */
+  border-color: #2e7d32; /* Warna hijau gelap untuk border saat fokus */
+}
+
+textarea {
+  height: 100px; /* Tinggi default textarea */
+  resize: vertical; /* Hanya dapat diubah ukurannya secara vertikal */
+}
+
+.save-button {
+  background-color: #2e7d32; /* Warna latar hijau gelap */
+  color: white; /* Warna teks putih */
+  padding: 10px 20px; /* Jarak dalam tombol */
+  border: none; /* Menghapus border default */
+  border-radius: 4px; /* Membuat sudut tombol melengkung */
+  cursor: pointer; /* Mengubah kursor menjadi pointer saat hover */
+  font-size: 16px; /* Ukuran font tombol */
+  width: 100%; /* Tombol menyesuaikan lebar kontainer */
+}
+
+.save-button:hover {
+  background-color: #1b5e20; /* Warna hijau lebih gelap saat hover */
+}
+
+.loading {
+  text-align: center; /* Memusatkan teks */
+  font-size: 18px; /* Ukuran font teks loading */
+  color: #2e7d32; /* Warna teks hijau gelap */
+}
+
+.submit-button {
+  padding: 10px 16px;
+  font-size: 14px;
+  background-color: #28a745; /* Hijau untuk tombol simpan */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex; /* Flex untuk menempatkan ikon di tengah */
+  align-items: center; /* Menyeimbangkan vertikal */
+  justify-content: center; /* Menyeimbangkan horizontal */
+  margin-left: auto; /* Posisi tombol simpan di kanan */
+}
+
+.submit-button:hover {
+  background-color: #218838; /* Warna lebih gelap saat hover */
+}
+
+.submit-button:active {
+  background-color: #1e7e34; /* Warna lebih gelap saat ditekan */
+}
+
+
+.submit-left {
+  padding: 10px 16px;
+  font-size: 14px;
+  background-color: #dc3545; /* Merah untuk tombol kembali */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex; /* Flex untuk menempatkan ikon di tengah */
+  align-items: center; /* Menyeimbangkan vertikal */
+  justify-content: center; /* Menyeimbangkan horizontal */
+  margin-right: auto; /* Posisi tombol kembali di kiri */
+}
+
+.submit-left:hover {
+  background-color: #c82333; /* Warna lebih gelap saat hover */
+}
+
+.submit-left:active {
+  background-color: #bd2130; /* Warna lebih gelap saat ditekan */
+}
+
+/* Tata letak tombol */
+.menu-form {
+  display: flex;
+  flex-direction: column; /* Awalnya kolom untuk input */
+  gap: 16px; /* Jarak antar elemen */
+}
+
+.button-group {
+  display: flex; /* Flex untuk menata tombol */
+  justify-content: space-between; /* Tombol berada di kiri dan kanan */
+  margin-top: 16px; /* Jarak tombol dari form */
+}

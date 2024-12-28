@@ -1,158 +1,204 @@
-/* General styles */
+/* Gaya Umum */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f7f7; /* Soft off-white background */
+    font-family: 'Arial', sans-serif; /* Menggunakan font Arial untuk seluruh halaman */
+    margin: 0; /* Menghapus margin default */
+    padding: 0; /* Menghapus padding default */
+    background-color: #f7f7f7; /* Latar belakang halaman berwarna putih lembut */
 }
 
+/* Dashboard Section */
 .dashboard {
-    padding: 30px;
+    padding: 30px; /* Menambahkan jarak dalam dashboard */
 }
 
 h2 {
-    text-align: center;
-    color: #333;
+    text-align: center; /* Menyusun teks judul di tengah */
+    color: #333; /* Menentukan warna teks menjadi gelap */
 }
 
 /* Statistik Section */
 .statistics {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
+    display: flex; /* Menggunakan flexbox untuk tata letak elemen statistik */
+    justify-content: space-between; /* Memberikan jarak antar elemen statistik */
+    margin-bottom: 30px; /* Menambahkan jarak bawah antar elemen statistik */
 }
 
 .stat-card {
-    background-color: #81c784; /* Same light green */
-    padding: 20px;
-    border-radius: 8px;
-    width: 22%;
-    text-align: center;
+    background-color: #81c784; /* Memberikan latar belakang kartu statistik warna hijau muda */
+    padding: 20px; /* Menambahkan jarak dalam kartu statistik */
+    border-radius: 8px; /* Memberikan sudut melengkung pada kartu statistik */
+    width: 22%; /* Menentukan lebar kartu statistik menjadi 22% dari kontainer */
+    text-align: center; /* Menyusun teks di tengah dalam kartu statistik */
 }
 
 .stat-card .icon {
-    font-size: 35px;
-    margin-bottom: 10px;
-    color: #fff;
+    font-size: 35px; /* Menentukan ukuran ikon statistik */
+    margin-bottom: 10px; /* Memberikan jarak bawah pada ikon */
+    color: #fff; /* Mengubah warna ikon menjadi putih */
 }
 
 .stat-card h2 {
-    font-size: 18px;
-    color: #fff;
-    margin-bottom: 5px;
+    font-size: 18px; /* Menentukan ukuran font untuk judul statistik */
+    color: #fff; /* Menentukan warna teks judul menjadi putih */
+    margin-bottom: 5px; /* Memberikan jarak bawah pada judul statistik */
 }
 
 .stat-card .stat-number {
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
+    font-size: 24px; /* Menentukan ukuran font untuk angka statistik */
+    font-weight: bold; /* Menebalkan angka statistik */
+    color: #fff; /* Mengubah warna angka statistik menjadi putih */
 }
 
 /* Menu Section */
 .menu {
-    margin-top: 30px;
+    margin-top: 30px; /* Memberikan jarak atas untuk menu */
 }
 
 .menu-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+    display: flex; /* Menggunakan flexbox untuk layout header menu */
+    justify-content: center; /* Menyusun header menu di tengah */
+    align-items: center; /* Menyusun header menu secara vertikal di tengah */
+    margin-bottom: 20px; /* Memberikan jarak bawah pada header menu */
 }
 
 .menu-header h2 {
-    margin: 0;
-    font-size: 26px;
-    color: #333;
-    font-weight: 600;
+    margin: 0; /* Menghapus margin default pada judul header menu */
+    font-size: 26px; /* Menentukan ukuran font untuk judul header menu */
+    color: #333; /* Menentukan warna teks judul menjadi gelap */
+    font-weight: 600; /* Menebalkan teks judul header menu */
 }
 
 .add-menu-btn {
-    padding: 12px 25px;
-    background-color: #81c784; /* Same light green */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 12px 25px; /* Menambahkan jarak dalam tombol */
+    background-color: #81c784; /* Memberikan latar belakang tombol hijau muda */
+    color: white; /* Mengubah warna teks tombol menjadi putih */
+    border: none; /* Menghapus border default tombol */
+    border-radius: 5px; /* Memberikan sudut melengkung pada tombol */
+    cursor: pointer; /* Mengubah kursor menjadi pointer saat hover tombol */
+    font-size: 16px; /* Menentukan ukuran font pada tombol */
 }
 
 .add-menu-btn:hover {
-    background-color: #66bb6a; /* Darker green for hover */
+    background-color: #66bb6a; /* Mengubah warna tombol menjadi hijau lebih gelap saat hover */
 }
 
 .menu-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    width: 100%; /* Menentukan lebar tabel menjadi 100% */
+    border-collapse: collapse; /* Menghilangkan jarak antar sel tabel */
+    margin-top: 20px; /* Memberikan jarak atas pada tabel menu */
 }
 
 .menu-table th, .menu-table td {
-    padding: 15px;
-    text-align: center;
-    border: 1px solid #ddd;
+    padding: 15px; /* Menambahkan jarak dalam sel tabel */
+    text-align: center; /* Menyusun teks di tengah dalam sel tabel */
+    border: 1px solid #ddd; /* Menambahkan border abu-abu pada sel tabel */
 }
 
 .menu-table th {
-    background-color: #81c784; /* Same light green for table header */
-    color: white;
-    font-size: 18px;
+    background-color: #81c784; /* Memberikan latar belakang header tabel warna hijau muda */
+    color: white; /* Menentukan warna teks header menjadi putih */
+    font-size: 18px; /* Menentukan ukuran font pada header tabel */
 }
 
 .menu-table td {
-    background-color: #f1f1f1; /* Light grey */
-    font-size: 16px;
+    background-color: #f1f1f1; /* Memberikan latar belakang sel tabel abu-abu muda */
+    font-size: 16px; /* Menentukan ukuran font pada sel tabel */
 }
 
 .edit-btn, .delete-btn {
-    padding: 8px 15px;
-    margin: 5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: 500;
+    padding: 8px 15px; /* Menambahkan jarak dalam tombol edit dan delete */
+    margin: 5px; /* Memberikan jarak antar tombol */
+    border: none; /* Menghapus border default tombol */
+    cursor: pointer; /* Mengubah kursor menjadi pointer saat hover tombol */
+    border-radius: 4px; /* Memberikan sudut melengkung pada tombol */
+    font-weight: 500; /* Menebalkan teks tombol */
 }
 
 .edit-btn {
-    background-color: #81c784; /* Same light green for edit button */
-    color: white;
+    background-color: #81c784; /* Memberikan latar belakang tombol edit warna hijau muda */
+    color: white; /* Mengubah warna teks tombol edit menjadi putih */
 }
 
 .delete-btn {
-    background-color: #f44336; /* Red for delete button */
-    color: white;
+    background-color: #f44336; /* Memberikan latar belakang tombol hapus warna merah */
+    color: white; /* Mengubah warna teks tombol hapus menjadi putih */
 }
 
-/* Reviews Section */
-.reviews {
-    margin-top: 40px;
+/* Responsive Styles */
+
+/* Gaya responsif untuk layar dengan lebar maksimum 1200px */
+@media (max-width: 1200px) {
+    .statistics {
+        flex-wrap: wrap; /* Membungkus elemen statistik agar lebih fleksibel */
+        gap: 20px; /* Memberikan jarak antar elemen statistik */
+    }
+
+    .stat-card {
+        width: 45%; /* Membuat kartu statistik memiliki lebar 45% untuk dua kolom */
+    }
 }
 
-.reviews h2 {
-    font-size: 24px; /* Reduced size for title */
-    text-align: center;
-    color: #333;
-    font-weight: bold;
-    margin-bottom: 20px;
+/* Gaya responsif untuk layar dengan lebar maksimum 768px */
+@media (max-width: 768px) {
+    .statistics {
+        flex-direction: column; /* Menyusun elemen statistik secara vertikal */
+        align-items: center; /* Menyusun elemen statistik di tengah */
+    }
+
+    .stat-card {
+        width: 90%; /* Menentukan kartu statistik menjadi satu kolom dengan lebar 90% */
+    }
+
+    .menu-header {
+        flex-direction: column; /* Menyusun header menu secara vertikal */
+    }
+
+    .menu-header h2 {
+        margin-bottom: 15px; /* Memberikan jarak bawah pada judul menu */
+    }
+
+    .add-menu-btn {
+        width: 100%; /* Menjadikan tombol menu menggunakan lebar penuh */
+    }
+
+    .menu-table th, .menu-table td {
+        font-size: 14px; /* Menentukan ukuran font lebih kecil pada tabel */
+        padding: 10px; /* Menambahkan jarak lebih kecil dalam sel tabel */
+    }
 }
 
-.review-card {
-    background-color: #81c784; /* Light green background for the review card */
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+/* Gaya responsif untuk layar dengan lebar maksimum 480px */
+@media (max-width: 480px) {
+    h2 {
+        font-size: 20px; /* Menentukan ukuran font lebih kecil untuk judul */
+    }
 
-.review-card p {
-    font-style: italic;
-    font-size: 16px;
-    color: #333; /* Keep the text color dark */
-}
+    .menu-table {
+        font-size: 14px; /* Menentukan ukuran font lebih kecil pada tabel menu */
+    }
 
-.review-card .author {
-    font-weight: bold;
-    color: #333;
-    text-align: right;
-    font-size: 14px;
+    .menu-table th, .menu-table td {
+        padding: 8px; /* Mengurangi jarak dalam sel tabel */
+    }
+
+    .edit-btn, .delete-btn {
+        font-size: 14px; /* Menentukan ukuran font lebih kecil pada tombol */
+        padding: 5px 10px; /* Mengurangi jarak dalam tombol */
+    }
+
+    .reviews h2 {
+        font-size: 20px; /* Menentukan ukuran font lebih kecil untuk judul ulasan */
+    }
+
+    .review-card {
+        padding: 15px; /* Mengurangi jarak dalam kartu ulasan */
+    }
+
+    .review-card p {
+        font-size: 14px; /* Menentukan ukuran font lebih kecil pada teks ulasan */
+    }
+
+    .review-card .author {
+        font-size: 12px; /* Menentukan ukuran font lebih kecil pada nama penulis ulasan */
+    }
 }

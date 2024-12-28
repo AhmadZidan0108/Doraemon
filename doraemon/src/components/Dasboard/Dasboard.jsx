@@ -1,134 +1,147 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from React Router
-import '../Dasboard/Dasboard.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import Swal from 'sweetalert2'; // Import SweetAlert2
+import React, { useEffect, useState } from 'react'; // Mengimpor React, useEffect, dan useState dari React
+import { Link } from 'react-router-dom'; // Mengimpor Link dari React Router untuk navigasi
+import '../Dasboard/Dasboard.css'; // Mengimpor file CSS untuk styling dashboard
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Mengimpor FontAwesomeIcon untuk ikon
+import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'; // Mengimpor ikon Edit, Plus, dan Trash dari FontAwesome
+import Swal from 'sweetalert2'; // Mengimpor SweetAlert2 untuk pop-up notifikasi
+import axios from 'axios'; // Mengimpor axios untuk melakukan request HTTP
+import Navbar from '../Navbar'; // Mengimpor komponen Navbar
 
 const Dashboard = () => {
-  const [menuItems, setMenuItems] = useState([
-    { id: 1, name: 'Americano', price: 'Rp 150,000', description: 'Americano adalah kopi yang ringan dan segar, cocok untuk penggemar kopi klasik.' },
-    { id: 2, name: 'Cappuccino', price: 'Rp 200,000', description: 'Cappuccino menggabungkan espresso, susu hangat, dan busa susu yang lembut.' },
-    { id: 3, name: 'Espresso', price: 'Rp 100,000', description: 'Espresso memiliki rasa kopi yang kuat, ideal untuk penikmat rasa autentik.' },
-    { id: 4, name: 'Macchiato', price: 'Rp 180,000', description: 'Macchiato adalah espresso dengan tambahan sedikit busa susu, penuh cita rasa.' },
-    { id: 5, name: 'Mocha', price: 'Rp 130,000', description: 'Mocha adalah perpaduan sempurna antara kopi, susu, dan cokelat.' },
-    { id: 6, name: 'Latte', price: 'Rp 200,000', description: 'Latte memiliki rasa lembut dari kombinasi espresso dan susu yang creamy.' },
-    { id: 7, name: 'Flat White', price: 'Rp 190,000', description: 'Flat White menawarkan rasa kopi yang lebih kuat dengan tekstur susu yang halus.' },
-    { id: 8, name: 'Cold Brew', price: 'Rp 100,000', description: 'Cold Brew diseduh dingin untuk menghasilkan rasa kopi yang halus dan menyegarkan.' }
-  ]);
+  const [menuItems, setMenuItems] = useState([]); // State untuk menyimpan data menu
 
-  const [reviews, setReviews] = useState([
-    { id: 1, reviewer: '-Ali', review: 'Kopi yang luar biasa! Rasanya sangat nikmat dan segar.' },
-    { id: 2, reviewer: '-Dina', review: 'Saya sangat suka Cappuccino, creamy dan lezat.' },
-    { id: 3, reviewer: '-Nana', review: 'Espresso-nya benar-benar kuat dan memberikan energi ekstra!' }
-  ]);
+  useEffect(() => {
+    // Mengambil data menu dari API saat komponen pertama kali dimuat
+    axios
+      .get("http://localhost:8080/api/admin/kafe/all", {
+        headers: {
+          "accept": "*/*", // Mengatur header untuk menerima semua format response
+        },
+      })
+      .then((response) => {
+        // Menyimpan data menu dalam state menuItems
+        setMenuItems(response.data);
+      })
+      .catch((error) => {
+        // Menampilkan error jika gagal mengambil data
+        console.error("Ada kesalahan saat mengambil data menu", error);
+      });
+  }, []); // Hanya dijalankan sekali saat komponen pertama kali dimuat
 
+  // Fungsi untuk menangani penghapusan menu
   const handleDelete = (id) => {
+    // Menampilkan konfirmasi penghapusan menggunakan SweetAlert2
     Swal.fire({
-      title: 'Apakah Anda yakin?',
-      text: 'Anda tidak akan dapat mengembalikan menu ini!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Hapus',
-      cancelButtonText: 'Batal',
+      title: 'Apakah Anda yakin?', // Judul konfirmasi
+      text: 'Anda tidak akan dapat mengembalikan menu ini!', // Pesan konfirmasi
+      icon: 'warning', // Ikon untuk peringatan
+      showCancelButton: true, // Menampilkan tombol batal
+      confirmButtonText: 'Hapus', // Teks tombol konfirmasi
+      cancelButtonText: 'Batal', // Teks tombol batal
     }).then((result) => {
       if (result.isConfirmed) {
-        setMenuItems(menuItems.filter(item => item.id !== id));
-        Swal.fire(
-          'Dihapus!',
-          'Menu telah dihapus.',
-          'success'
-        );
+        // Mengirim permintaan DELETE ke API untuk menghapus menu
+        axios
+          .delete(`http://localhost:8080/api/admin/kafe/delete/${id}`, {
+            headers: {
+              'accept': '*/*', // Mengatur header untuk menerima semua format response
+            },
+          })
+          .then((response) => {
+            // Jika berhasil, hapus menu dari state menuItems
+            setMenuItems(menuItems.filter(item => item.id !== id));
+            // Menampilkan notifikasi sukses
+            Swal.fire('Dihapus!', 'Menu telah dihapus.', 'success');
+          })
+          .catch((error) => {
+            // Menampilkan notifikasi error jika gagal menghapus
+            Swal.fire('Gagal', 'Terjadi kesalahan saat menghapus menu.', 'error');
+          });
       }
     });
   };
 
   return (
-    <div className="dashboard">
-      <main>
-        <section className="statistics">
-          <div className="stat-card">
-            <div className="icon"><i className="fas fa-users"></i></div>
-            <h2>Jumlah Pengunjung</h2>
-            <p className="stat-number">150</p>
-          </div>
-          <div className="stat-card">
-            <div className="icon"><i className="fas fa-money-bill-wave"></i></div>
-            <h2>Penjualan Hari Ini</h2>
-            <p className="stat-number">Rp 187,500,000</p>
-          </div>
-          <div className="stat-card">
-            <div className="icon"><i className="fas fa-box"></i></div>
-            <h2>Jumlah Pesanan</h2>
-            <p className="stat-number">1.200.000</p>
-          </div>
-          <div className="stat-card">
-            <div className="icon"><i className="fas fa-star"></i></div>
-            <h2>Rating Pelanggan</h2>
-            <p className="stat-number">9.5 / 10</p>
-          </div>
-        </section>
+    <div>
+      <Navbar/> {/* Menampilkan Navbar */}
+      <div className="dashboard">
+        <main>
+          {/* Bagian Statistik */}
+          <section className="statistics">
+            <div className="stat-card">
+              <div className="icon"><i className="fas fa-users"></i></div> {/* Ikon jumlah pengunjung */}
+              <h2>Jumlah Pengunjung</h2>
+              <p className="stat-number">150</p> {/* Menampilkan jumlah pengunjung */}
+            </div>
+            <div className="stat-card">
+              <div className="icon"><i className="fas fa-money-bill-wave"></i></div> {/* Ikon penjualan */}
+              <h2>Penjualan Hari Ini</h2>
+              <p className="stat-number">Rp 187,500,000</p> {/* Menampilkan total penjualan hari ini */}
+            </div>
+            <div className="stat-card">
+              <div className="icon"><i className="fas fa-box"></i></div> {/* Ikon jumlah pesanan */}
+              <h2>Jumlah Pesanan</h2>
+              <p className="stat-number">1.200.000</p> {/* Menampilkan jumlah pesanan */}
+            </div>
+            <div className="stat-card">
+              <div className="icon"><i className="fas fa-star"></i></div> {/* Ikon rating */}
+              <h2>Rating Pelanggan</h2>
+              <p className="stat-number">9.5 / 10</p> {/* Menampilkan rating pelanggan */}
+            </div>
+          </section>
 
-        <section className="menu">
-          <div className="menu-header">
-            <h2>MENU TERKINI</h2>
-          </div>
-          <div className="add-menu-container">
-            <Link to="/TambahMenu">
-              <button className="add-menu-btn">
-                <FontAwesomeIcon icon={faPlus} />
-              </button>
-            </Link>
-          </div>
-          <table className="menu-table">
-            <thead>
-              <tr>
-                <th>Menu</th>
-                <th>Harga</th>
-                <th>Deskripsi</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              {menuItems.map(item => (
-                <tr key={item.id}>
-                  <td>{item.name}</td>
-                  <td>{item.price}</td>
-                  <td>{item.description}</td>
-                  <td>
-                    {/* Edit button now links to EditMinuman page */}
-                    <Link to={`/EditMinuman/`}>
-                      <button className="edit-btn">
-                        <FontAwesomeIcon icon={faEdit} />
-                      </button>
-                    </Link>
-                    <button onClick={() => handleDelete(item.id)} className="delete-btn">
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                  </td>
+          {/* Bagian Menu */}
+          <section className="menu">
+            <div className="menu-header">
+              <h2>MENU TERKINI</h2> {/* Judul untuk daftar menu */}
+            </div>
+            <div className="add-menu-container">
+              <Link to="/TambahMenu"> {/* Link untuk menambah menu baru */}
+                <button className="add-menu-btn">
+                  <FontAwesomeIcon icon={faPlus} /> {/* Ikon tambah menu */}
+                </button>
+              </Link>
+            </div>
+            <table className="menu-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Menu</th> {/* Kolom untuk nama menu */}
+                  <th>Harga</th> {/* Kolom untuk harga menu */}
+                  <th>Deskripsi</th> {/* Kolom untuk deskripsi menu */}
+                  <th>Aksi</th> {/* Kolom untuk tombol aksi (edit dan hapus) */}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
+              </thead>
+              <tbody>
+                {menuItems.map((item, index) => (
+                  <tr key={item.id}>
+                    <td>{index + 1}</td> {/* Menampilkan nomor urut berdasarkan indeks */}
+                    <td>{item.namaMinuman}</td> {/* Menampilkan nama menu dari API */}
+                    <td>{item.hargaMinuman}</td> {/* Menampilkan harga menu dari API */}
+                    <td>{item.deskripsiMinuman}</td> {/* Menampilkan deskripsi menu dari API */}
+                    <td>
+                      {/* Tombol Edit */}
+                      <Link to={`/editminuman/${item.id}`}>
+                        <button className="edit-btn">
+                          <FontAwesomeIcon icon={faEdit} />
+                        </button>
+                      </Link>
+                      {/* Tombol Hapus */}
+                      <button onClick={() => handleDelete(item.id)} className="delete-btn">
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
 
-        {/* New Section for Customer Reviews */}
-        <section className="reviews">
-          <div className="reviews-header">
-            <h2 className="reviews-title">ULASAN PEMBELI</h2>
-          </div>
-          <div className="reviews-list">
-            {reviews.map(review => (
-              <div key={review.id} className="review-card">
-                <h3>{review.reviewer}</h3>
-                <p>{review.review}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
+        
+        </main>
+      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default Dashboard; // Mengekspor komponen Dashboard
