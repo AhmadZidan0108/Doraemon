@@ -6,14 +6,18 @@ import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'; // 
 import Swal from 'sweetalert2'; // Mengimpor SweetAlert2 untuk pop-up notifikasi
 import axios from 'axios'; // Mengimpor axios untuk melakukan request HTTP
 import Navbar from '../Navbar'; // Mengimpor komponen Navbar
+import { API_KAFE } from '../../utils/BaseUrl';
 
 const Dashboard = () => {
   const [menuItems, setMenuItems] = useState([]); // State untuk menyimpan data menu
 
+  // Mengambil id admin dari localStorage
+  const idAdmin = localStorage.getItem("id");
+
   useEffect(() => {
     // Mengambil data menu dari API saat komponen pertama kali dimuat
     axios
-      .get("http://localhost:8080/api/admin/kafe/all", {
+      .get(`${API_KAFE}/getAllByAdmin/${idAdmin}`, {
         headers: {
           "accept": "*/*", // Mengatur header untuk menerima semua format response
         },
@@ -26,7 +30,7 @@ const Dashboard = () => {
         // Menampilkan error jika gagal mengambil data
         console.error("Ada kesalahan saat mengambil data menu", error);
       });
-  }, []); // Hanya dijalankan sekali saat komponen pertama kali dimuat
+  }, [idAdmin]); // Hanya dijalankan sekali saat komponen pertama kali dimuat
 
   // Fungsi untuk menangani penghapusan menu
   const handleDelete = (id) => {
@@ -42,7 +46,7 @@ const Dashboard = () => {
       if (result.isConfirmed) {
         // Mengirim permintaan DELETE ke API untuk menghapus menu
         axios
-          .delete(`http://localhost:8080/api/admin/kafe/delete/${id}`, {
+          .delete(`${API_KAFE}/delete/${id}`, {
             headers: {
               'accept': '*/*', // Mengatur header untuk menerima semua format response
             },
@@ -63,7 +67,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Navbar/> {/* Menampilkan Navbar */}
+      <Navbar /> {/* Menampilkan Navbar */}
       <div className="dashboard">
         <main>
           {/* Bagian Statistik */}
@@ -136,8 +140,6 @@ const Dashboard = () => {
               </tbody>
             </table>
           </section>
-
-        
         </main>
       </div>
     </div>

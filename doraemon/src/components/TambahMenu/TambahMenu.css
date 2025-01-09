@@ -134,39 +134,3 @@
         font-size: 0.85rem;
     }
 }
-
-.submit-left {
-    padding: 10px 16px;
-    font-size: 14px;
-    background-color: #dc3545; /* Merah untuk tombol kembali */
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex; /* Flex untuk menempatkan ikon di tengah */
-    align-items: center; /* Menyeimbangkan vertikal */
-    justify-content: center; /* Menyeimbangkan horizontal */
-    margin-right: auto; /* Posisi tombol kembali di kiri */
-}
-
-.submit-left:hover {
-    background-color: #c82333; /* Warna lebih gelap saat hover */
-}
-
-.submit-left:active {
-    background-color: #bd2130; /* Warna lebih gelap saat ditekan */
-}
-
-/* Tata letak tombol */
-.menu-form {
-    display: flex;
-    flex-direction: column; /* Awalnya kolom untuk input */
-    gap: 16px; /* Jarak antar elemen */
-}
-
-.button-group {
-    display: flex; /* Flex untuk menata tombol */
-    justify-content: space-between; /* Tombol berada di kiri dan kanan */
-    margin-top: 16px; /* Jarak tombol dari form */
-}

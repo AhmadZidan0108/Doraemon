@@ -2,6 +2,7 @@ import axios from "axios"; // Mengimpor axios untuk melakukan request HTTP
 import React, { useState } from "react"; // Mengimpor React dan useState untuk mengelola state
 import Swal from "sweetalert2"; // Mengimpor SweetAlert2 untuk notifikasi
 import { useNavigate } from "react-router-dom"; // Mengimpor useNavigate untuk navigasi halaman
+import { API_LOGIN } from '../../utils/BaseUrl';
 
 const Login = () => {
   const [email, setEmail] = useState(""); // State untuk menyimpan email yang dimasukkan
@@ -27,7 +28,7 @@ const Login = () => {
 
     try {
       // Melakukan request API untuk login
-      const response = await axios.post("http://localhost:8080/api/login", {
+      const response = await axios.post(`${API_LOGIN}/login`, {
         email, // Mengirimkan email ke API
         password, // Mengirimkan password ke API
       });

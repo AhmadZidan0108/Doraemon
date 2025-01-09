@@ -5,6 +5,7 @@ import axios from 'axios'; // Mengimpor axios untuk melakukan request HTTP
 import { useNavigate } from 'react-router-dom'; // Mengimpor useNavigate untuk melakukan navigasi ke halaman lain
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { API_KAFE } from '../../utils/BaseUrl';
 
 const TambahMenu = () => {
   // Mendeklarasikan state untuk menyimpan input dari form
@@ -41,7 +42,7 @@ const TambahMenu = () => {
 
     // Mengirim data menu ke API menggunakan axios dengan idAdmin di URL
     axios
-      .post(`http://localhost:8080/api/admin/kafe/tambah/${idAdmin}`, menuData, {
+      .post(`${API_KAFE}/tambah/${idAdmin}`, menuData, {
         headers: {
           'accept': '*/*', // Mengatur header untuk menerima segala jenis response
           'Content-Type': 'application/json', // Mengatur header agar data yang dikirim dalam format JSON

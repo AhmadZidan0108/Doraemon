@@ -4,6 +4,7 @@ import './EditMinuman.css'; // Mengimpor file CSS untuk styling komponen
 import Swal from 'sweetalert2'; // Mengimpor SweetAlert2 untuk menampilkan notifikasi
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { API_KAFE } from '../../../utils/BaseUrl';
 
 const EditMinuman = () => {
   const { id } = useParams(); // Mendapatkan id dari parameter URL
@@ -14,7 +15,7 @@ const EditMinuman = () => {
   // useEffect digunakan untuk mengambil data menu dari API berdasarkan id yang didapat dari URL
   useEffect(() => {
     // Mengambil data menu berdasarkan id.
-    fetch(`http://localhost:8080/api/admin/kafe/getById/${id}`, {
+    fetch(`${API_KAFE}/getById/${id}`, {
       headers: {
         'accept': '*/*', // Mengatur header agar menerima segala jenis response
       },
@@ -54,7 +55,7 @@ const EditMinuman = () => {
     };
 
     // Mengirim data yang sudah diperbarui ke API
-    fetch(`http://localhost:8080/api/admin/kafe/editById/${id}?idAdmin=${idAdmin}`, {
+    fetch(`${API_KAFE}/editById/${id}?idAdmin=${idAdmin}`, {
       method: 'PUT', // Menggunakan metode PUT untuk memperbarui data
       headers: {
         'Content-Type': 'application/json', // Mengatur header agar data yang dikirim dalam format JSON
