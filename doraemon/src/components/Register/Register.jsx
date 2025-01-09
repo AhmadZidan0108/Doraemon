@@ -2,6 +2,7 @@ import axios from "axios"; // Mengimpor axios untuk melakukan request HTTP
 import React, { useState } from "react"; // Mengimpor React dan useState untuk mengelola state
 import Swal from "sweetalert2"; // Mengimpor SweetAlert2 untuk menampilkan notifikasi pop-up
 import { useNavigate } from "react-router-dom"; // Mengimpor useNavigate untuk navigasi programatik
+import { API_REGISTER } from "../../utils/BaseUrl";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +38,7 @@ const Register = () => {
 
     try {
       // Mengirimkan request POST ke API untuk mendaftar pengguna baru
-      const response = await axios.post("http://localhost:8080/api/admin/register", {
+      const response = await axios.post(`${API_REGISTER}/register`, {
         email: formData.email,
         password: formData.password,
         username: formData.name, // 'username' digunakan di server untuk nama pengguna
