@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'; // Mengimpor React, useState, dan useEffect untuk mengelola state dan efek samping
-import { useParams, useNavigate } from 'react-router-dom'; // Mengimpor useParams untuk mengambil parameter dari URL dan useNavigate untuk berpindah halaman
-import './EditMinuman.css'; // Mengimpor file CSS untuk styling komponen
-import Swal from 'sweetalert2'; // Mengimpor SweetAlert2 untuk menampilkan notifikasi
+import React, { useState, useEffect } from 'react'; // Mengimpor React, useState, dan useEffect
+import { useParams, useNavigate } from 'react-router-dom'; // Mengimpor useParams dan useNavigate
+import './EditMinuman.css'; // Mengimpor file CSS untuk styling
+import Swal from 'sweetalert2'; // SweetAlert2 untuk notifikasi
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import { API_KAFE } from '../../../utils/BaseUrl';
@@ -9,30 +9,27 @@ import { API_KAFE } from '../../../utils/BaseUrl';
 const EditMinuman = () => {
   const { id } = useParams(); // Mendapatkan id dari parameter URL
   const idAdmin = localStorage.getItem('id'); // Mengambil idAdmin dari localStorage
-  const [menuItem, setMenuItem] = useState(null); // State untuk menyimpan data menu yang akan diedit
-  const navigate = useNavigate(); // Inisialisasi useNavigate untuk navigasi
+  const [menuItem, setMenuItem] = useState(null); // State untuk menyimpan data menu
+  const navigate = useNavigate(); // Inisialisasi useNavigate
 
-  // useEffect digunakan untuk mengambil data menu dari API berdasarkan id yang didapat dari URL
+  // Mengambil data menu dari API berdasarkan ID
   useEffect(() => {
-    // Mengambil data menu berdasarkan id.
     fetch(`${API_KAFE}/getById/${id}`, {
       headers: {
-        'accept': '*/*', // Mengatur header agar menerima segala jenis response
+        'accept': '*/*', // Header request
       },
     })
-      .then((response) => response.json()) // Mengonversi response menjadi JSON
+      .then((response) => response.json())
       .then((data) => {
-        // Menyimpan data menu yang didapat ke dalam state menuItem
         setMenuItem({
-          id: data.id, // Menyimpan id menu
-          idAdmin: data.idAdmin, // Menyimpan idAdmin (jika diperlukan)
-          name: data.namaMinuman, // Menyimpan nama minuman
-          price: data.hargaMinuman, // Menyimpan harga minuman
-          description: data.deskripsiMinuman, // Menyimpan deskripsi minuman
+          id: data.id,
+          idAdmin: data.idAdmin,
+          name: data.namaMinuman,
+          price: data.hargaMinuman,
+          description: data.deskripsiMinuman,
         });
       })
       .catch((error) => {
-        // Menangani kesalahan jika terjadi saat mengambil data
         console.error('Error fetching menu item:', error);
         Swal.fire({
           title: 'Error',
@@ -41,29 +38,38 @@ const EditMinuman = () => {
           confirmButtonText: 'OK',
         });
       });
-  }, [id]); // useEffect akan dijalankan setiap kali id berubah
+  }, [id]);
 
   // Fungsi untuk menyimpan perubahan menu
   const handleSave = () => {
-    // Membuat objek updatedData yang berisi data yang telah diubah
+    // Validasi input
+    if (!menuItem.name || !menuItem.price || !menuItem.description) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Semua kolom wajib diisi.',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+
     const updatedData = {
-      id: menuItem.id, // Menyertakan id menu
-      idAdmin: idAdmin, // Menyertakan idAdmin dari localStorage
-      namaMinuman: menuItem.name, // Menyertakan nama minuman
-      hargaMinuman: parseInt(menuItem.price, 10), // Mengonversi harga menjadi integer
-      deskripsiMinuman: menuItem.description, // Menyertakan deskripsi minuman
+      id: menuItem.id,
+      idAdmin: idAdmin,
+      namaMinuman: menuItem.name,
+      hargaMinuman: parseInt(menuItem.price, 10),
+      deskripsiMinuman: menuItem.description,
     };
 
-    // Mengirim data yang sudah diperbarui ke API
     fetch(`${API_KAFE}/editById/${id}?idAdmin=${idAdmin}`, {
-      method: 'PUT', // Menggunakan metode PUT untuk memperbarui data
+      method: 'PUT',
       headers: {
-        'Content-Type': 'application/json', // Mengatur header agar data yang dikirim dalam format JSON
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(updatedData), // Mengirim data yang diperbarui dalam body request
+      body: JSON.stringify(updatedData),
     })
       .then((response) => {
-        // Menangani response dari server
+        console.log('API response:', response); // Debugging response dari server
         if (response.ok) {
           Swal.fire({
             title: 'Perubahan Tersimpan!',
@@ -71,7 +77,6 @@ const EditMinuman = () => {
             icon: 'success',
             confirmButtonText: 'OK',
           }).then(() => {
-            // Setelah berhasil menyimpan, arahkan ke halaman /dashboard
             navigate('/dasboard');
           });
         } else {
@@ -79,7 +84,6 @@ const EditMinuman = () => {
         }
       })
       .catch((error) => {
-        // Menangani kesalahan jika terjadi saat menyimpan data
         console.error('Error saving menu item:', error);
         Swal.fire({
           title: 'Error',
@@ -91,48 +95,53 @@ const EditMinuman = () => {
   };
 
   if (!menuItem) {
-    // Jika data menu belum dimuat, tampilkan pesan loading
     return <div className="loading">Loading...</div>;
   }
 
   return (
-    <div className="edit-container"> {/* Container utama untuk form edit menu */}
-      <h2>Edit Menu</h2> {/* Judul halaman */}
-      <div className="input-group"> {/* Grup input untuk nama minuman */}
-        <label>Nama Minuman:</label> {/* Label untuk input nama */}
+    <div className="edit-container">
+      <h2>Edit Menu</h2>
+      <div className="input-group">
+        <label>Nama Minuman:</label>
         <input
           type="text"
-          value={menuItem.name} // Nilai input diikat dengan state menuItem.name
-          onChange={(e) => setMenuItem({ ...menuItem, name: e.target.value })} // Mengubah state menuItem.name ketika input berubah
-          className="input-field" // Menambahkan class CSS untuk styling
+          value={menuItem.name}
+          onChange={(e) => setMenuItem({ ...menuItem, name: e.target.value })}
+          className="input-field"
         />
       </div>
-      <div className="input-group"> {/* Grup input untuk harga minuman */}
-        <label>Harga:</label> {/* Label untuk input harga */}
+      <div className="input-group">
+        <label>Harga:</label>
         <input
           type="number"
-          value={menuItem.price} // Nilai input diikat dengan state menuItem.price
-          onChange={(e) => setMenuItem({ ...menuItem, price: e.target.value })} // Mengubah state menuItem.price ketika input berubah
-          className="input-field" // Menambahkan class CSS untuk styling
+          value={menuItem.price}
+          onChange={(e) => setMenuItem({ ...menuItem, price: e.target.value })}
+          className="input-field"
         />
       </div>
-      <div className="input-group"> {/* Grup input untuk deskripsi minuman */}
-        <label>Deskripsi:</label> {/* Label untuk input deskripsi */}
+      <div className="input-group">
+        <label>Deskripsi:</label>
         <textarea
-          value={menuItem.description} // Nilai textarea diikat dengan state menuItem.description
-          onChange={(e) => setMenuItem({ ...menuItem, description: e.target.value })} // Mengubah state menuItem.description ketika input berubah
-          className="input-field" // Menambahkan class CSS untuk styling
+          value={menuItem.description}
+          onChange={(e) =>
+            setMenuItem({ ...menuItem, description: e.target.value })
+          }
+          className="input-field"
         />
       </div>
       <div className="button-group">
         <button
           type="button"
           className="submit-left"
-          onClick={() => navigate('/dasboard')} // Fungsi navigate ke halaman dashboard
+          onClick={() => navigate('/dasboard')}
         >
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
-        <button type="submit" className="submit-button"> {/* Tombol untuk submit */}
+        <button
+          type="button"
+          className="submit-button"
+          onClick={handleSave} // Pastikan handleSave dipanggil
+        >
           <FontAwesomeIcon icon={faFloppyDisk} />
         </button>
       </div>
@@ -140,4 +149,4 @@ const EditMinuman = () => {
   );
 };
 
-export default EditMinuman; // Mengekspor komponen EditMinuman
+export default EditMinuman;

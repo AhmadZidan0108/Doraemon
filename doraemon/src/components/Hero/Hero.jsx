@@ -107,9 +107,6 @@ const CafeMenu = () => {
                                     <h2 className="text-2xl font-semibold text-gray-800 text-left">{item.name}</h2> {/* Nama menu */}
                                     <p className="text-lg font-semibold text-gray-600">{item.price}</p> {/* Harga menu */}
                                     <p className="text-sm text-gray-500 mt-2">{item.description}</p> {/* Deskripsi menu */}
-                                    <button className="w-full bg-teal-500 text-white py-3 rounded-b-lg mt-4 hover:bg-teal-400 transition duration-300">
-                                        Pesan Sekarang {/* Tombol untuk melakukan pemesanan */}
-                                    </button>
                                 </div>
                             </div>
                         ))}
